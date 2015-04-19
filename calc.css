@@ -1,0 +1,27 @@
+table{
+	border: 1px solid black;
+	padding: 10px;
+}
+
+table {
+	background-image: url( corpus.jpg ); 
+	border-spacing: 3px;
+}
+
+.math{
+	text-align: center;
+	font-weight: bold;
+	font-size: 110%;
+	font-style: italic;
+	padding: 5px; 
+	border: 0;
+	background-image: url(button.jpg);
+	border-radius: 5px;
+	color: #BEDDF1;
+}
+
+.input {
+	font-size: 20px;
+	border-radius: 5px;
+	background-color: #B5C88A;
+}
