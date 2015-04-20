@@ -1,46 +1,76 @@
-window.onload = function (e) {
+/*
+	define clicks on calculator button
+*/
+
+window.onload = function (button) {
+
 	var tr = document.getElementsByClassName('tr');
 	for(var i = 0; i < tr.length; i++) {
-		tr[i].addEventListener('click', foo, false);
+		tr[i].addEventListener('click', calculatorBrains, false);
 	}
 
 	var plus = document.getElementById('plus');
-		plus.addEventListener('click', foo, false);
+		plus.addEventListener('click', calculatorBrains, false);
 
 	var minus = document.getElementById('minus');
-		minus.addEventListener('click', foo, false);
+		minus.addEventListener('click', calculatorBrains, false);
 
 	var multiply = document.getElementById('multiply');
-		multiply.addEventListener('click', foo, false);
+		multiply.addEventListener('click', calculatorBrains, false);
 
 	var divide = document.getElementById('divide');
-		divide.addEventListener('click', foo, false);
+		divide.addEventListener('click', calculatorBrains, false);
 			
 	var reset = document.getElementById('fresh');
-		reset.addEventListener('click', foo, false);
+		reset.addEventListener('click', calculatorBrains, false);
 
 	var answr = document.getElementById('answr');
-		answr.addEventListener('click', foo, false);
+		answr.addEventListener('click', calculatorBrains, false);
 };
+
+/*
+	define required variables for calculatorBrains()
+	a - first variable
+	b - second variable
+	cur - current mathematical operator
+	currnetElement - current entered symbol
+	input - value in "sreen"
+*/
 
 var a = '',
 	b = '',
 	cur = '',
+	curElement,
 	input;
-function foo (e) {
+
+/*
+	define calculatorBrains()
+*/
+
+function calculatorBrains (button) {
+
+	/*
+		define input and current entered symbol of cliked button
+	*/
+
 	input = document.getElementById('i');
-	curElement = e.target;
+	curElement = button.target;
+	
+	/*
+		cheсk entered simbol
+	*/
+
 	if(/^\d+$/.test(curElement.firstChild.nodeValue)){
 		input.value += curElement.firstChild.nodeValue;
 		if(cur === ''){
 			a = input.value;
 		}
-		if(cur !== '' && a !== '') {
-				b += curElement.firstChild.nodeValue;
+		if(cur !== '' && a !== ''){
+			b += curElement.firstChild.nodeValue;
 		}
-	}else if(a !== '' && curElement.firstChild.nodeValue == '+') {
+	}else if(a !== '' && curElement.firstChild.nodeValue == '+'){
 		console.log(cur);
-		if(b !== '') {
+		if(b !== ''){
 			switch(cur){
 				case 'plus':
 					input.value = '';
@@ -70,7 +100,7 @@ function foo (e) {
 						a = input.value;
 						b = '';
 						input.value += curElement.firstChild.nodeValue;
-					}else {
+					}else{
 						input.value = '';
 						a = '';
 						b = '';
@@ -81,10 +111,13 @@ function foo (e) {
 		}else{
 			input.value += curElement.firstChild.nodeValue;
 		}
-		cur = 'plus';
-	}else if(a !== '' && curElement.firstChild.nodeValue == '-') {
+		if(input.value !== '')
+			cur = 'plus';
+		else
+			cur='';
+	}else if(a !== '' && curElement.firstChild.nodeValue == '-'){
 		console.log(cur);
-		if(b !== '') {
+		if(b !== ''){
 			switch(cur){
 				case 'plus':
 					input.value = '';
@@ -114,7 +147,7 @@ function foo (e) {
 						a = input.value;
 						b = '';
 						input.value += curElement.firstChild.nodeValue;
-					}else {
+					}else{
 						input.value = '';
 						a = '';
 						b = '';
@@ -125,10 +158,13 @@ function foo (e) {
 		}else{
 			input.value += curElement.firstChild.nodeValue;
 		}
-		cur = 'minus';
-	}else if(curElement.firstChild.nodeValue == '*') {
+		if(input.value !== '')
+			cur = 'minus';
+		else
+			cur='';
+	}else if(curElement.firstChild.nodeValue == '*'){
 		console.log(cur);
-		if(b !== '') {
+		if(b !== ''){
 			switch(cur){
 				case 'plus':
 					input.value = '';
@@ -158,7 +194,7 @@ function foo (e) {
 						a = input.value;
 						b = '';
 						input.value += curElement.firstChild.nodeValue;
-					}else {
+					}else{
 						input.value = '';
 						a = '';
 						b = '';
@@ -166,13 +202,15 @@ function foo (e) {
 					}
 					break;
 			}
-		}else{
+		}else
 			input.value += curElement.firstChild.nodeValue;
-		}
-		cur = 'multiply';
-	}else if(curElement.firstChild.nodeValue == '/') {
+		if(input.value !== '')
+			cur = 'multiply';
+		else
+			cur='';
+	}else if(curElement.firstChild.nodeValue == '/'){
 		console.log(cur);
-		if(b !=='') {
+		if(b !==''){
 			switch(cur){
 				case 'plus':
 					input.value = '';
@@ -202,7 +240,7 @@ function foo (e) {
 						a = input.value;
 						b = '';
 						input.value += curElement.firstChild.nodeValue;
-					}else {
+					}else{
 						input.value = '';
 						a = '';
 						b = '';
@@ -210,11 +248,15 @@ function foo (e) {
 					}
 					break;
 			}
-		}else{
-			input.value += curElement.firstChild.nodeValue;
 		}
-		cur = 'divide';
-	}else if(curElement.firstChild.nodeValue == '=') {
+		else
+			input.value += curElement.firstChild.nodeValue;
+		if(input.value !== '')
+			cur = 'divide';
+		else
+			cur='';
+	}else if(curElement.firstChild.nodeValue == '='){
+		console.log(cur);
 		switch(cur){
 			case 'plus':
 				input.value = '';
@@ -244,13 +286,12 @@ function foo (e) {
 					a = input.value;
 					cur = '';
 					b = '';
-				}else {
+				}else{
 					cur = '';
 					input.value = '';
 					a = '';
 					b = '';
 					cur = '';
-					console.log('lol');
 					confirm('illegal dividing by 0!!!');
 				}
 				break;
