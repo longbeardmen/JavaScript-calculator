@@ -1,27 +1,37 @@
 table{
 	border: 1px solid black;
 	padding: 10px;
-}
-
-table {
-	background-image: url( corpus.jpg ); 
+	background-image: url(../img/corpus.jpg); 
 	border-spacing: 3px;
 }
 
-.math{
+.math, .main{
 	text-align: center;
 	font-weight: bold;
 	font-size: 110%;
 	font-style: italic;
-	padding: 5px; 
 	border: 0;
-	background-image: url(button.jpg);
+	background-image: url(../img/button.jpg);
 	border-radius: 5px;
 	color: #BEDDF1;
+}
+
+.math {
+	padding: 8px;
 }
 
 .input {
 	font-size: 20px;
 	border-radius: 5px;
 	background-color: #B5C88A;
+}
+
+@font-face {
+	font-family: Cristal;
+	src: local('Cristal'), 
+		 url(cristal.TTF);
+} 
+
+input {
+	font-family: Cristal;
 }
